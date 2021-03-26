@@ -28,6 +28,7 @@ class HomeController extends Controller
 			return response()->json(['msg'=>"Service Unavailable"]);
 		
 		$cuis = '';
+		$results;
 		foreach($response as $key => $val){
 			if ($key == 'data'){
 				foreach($val as $k => $v){
@@ -55,7 +56,8 @@ class HomeController extends Controller
 		
 		$url = "https://api.documenu.com/v2/restaurant/$id/menuitems";
 		$response  = $this->apiCall($url);
-		$results;
+		$results = [];
+		$name = "";
 		foreach($response['data'] as $key => $value){
 			$results[$value['menu_item_name']] = [
 				'menu_item_name' => $value['menu_item_name'],

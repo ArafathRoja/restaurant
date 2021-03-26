@@ -39,17 +39,21 @@
 								<th>Action</th>			
 							</thead>
 							<tbody>
-							@foreach($results as $key => $val)
-							
-								<?php $records = $val; ?>
-								<tr>
-									<td>{{$key}}</td>
-								@foreach($records as $k => $value)
-									<td>{{$value}}</td>
+							@if(isset($results) && empty($results) == false)
+								@foreach($results as $key => $val)
+								
+									<?php $records = $val; ?>
+									<tr>
+										<td>{{$key}}</td>
+									@foreach($records as $k => $value)
+										<td>{{$value}}</td>
+									@endforeach
+										<td><a href="{{ url('/get-menu/'.$key) }}" id="{{$key}}" class="btn btn-info mt-2">View Menu</a></td>
+									</tr>
 								@endforeach
-									<td><a href="{{ url('/get-menu/'.$key) }}" id="{{$key}}" class="btn btn-info mt-2">View Menu</a></td>
-								</tr>
-							@endforeach
+							@else
+								<tr style="color:red;">Sorry, No Results Found</tr>
+							@endif
 							</tbody>
 						</table>
 					</div>
